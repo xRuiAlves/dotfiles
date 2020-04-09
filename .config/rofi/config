@@ -1,0 +1,16 @@
+rofi.lines: 5
+rofi.eh: 2
+rofi.padding: 200
+rofi.fullscreen: true
+rofi.bw: 0
+rofi.separator-style: none
+rofi.hide-scrollbar: true
+
+!                  'background',  'border', 'separator'
+rofi.color-window: argb:cc102a3c, #27648f,  #ff0000
+
+! State:           'bg',           'fg',     'bgalt',        'hlbg',        'hlfg'
+rofi.color-normal: argb:00000000,  #ebf3fa,  argb:00000000,  argb:66153851, #ffbb00
+rofi.color-urgent: argb:00000000,  #ebf3fa,  argb:00000000,  argb:66153851, #ffbb00
+rofi.color-active: argb:00000000,  #ebf3fa,  argb:00000000,  argb:66153851, #ffbb00
+rofi.font: Ubuntu 22
