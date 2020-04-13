@@ -15,3 +15,5 @@ source /opt/asdf-vm/completions/asdf.bash
 # clipboard
 alias clipboard='xclip -selection clipboard'
 
+# git aliases
+alias gamer='git commit --amend --reuse-message HEAD'
