@@ -227,7 +227,7 @@ client.urgent		    $urgent-bg-color	$urgent-bg-color    $text-color		    $indica
 # Start Window manager
 exec_always --no-startup-id picom -bf
 
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show drun
 
 # Mousepad natural scrolling fix
 # exec --no-startup-id synclient NaturalScrolling=1 VertScrollDelta=-113
@@ -250,8 +250,9 @@ bar {
 }
 
 # Printscreen
+exec xfce4-clipman
 bindsym Print exec xfce4-screenshooter
-bindsym --release Shift+Print exec scrot -s -e 'xclip -selection clipboard -t "image/png" < $f'  
+bindsym Shift+Print exec xfce4-screenshooter -cr
 
 # Screen lock
 bindsym Control+Shift+l exec i3lock -i ~/Pictures/Wallpapers/rainbow.png
@@ -266,3 +267,9 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc $brightness_jump
 # decrease screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec $brightness_jump
 
+# Screen timeout / suspending time configs (in seconds)
+set $screen_timeout_time 3600
+set $screen_standby_time 0
+set $screen_suspend_time 0
+exec xset s $screen_timeout_time
+exec xset dpms $screen_standby_time $screen_suspend_time $screen_timeout_time
