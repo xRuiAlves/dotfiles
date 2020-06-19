@@ -151,16 +151,12 @@ assign [class="Skype"] $ws5
 assign [class="Thunderbird"] $ws6
 assign [class="Steam"] $ws9
 assign [class="diceydungeons"] $ws9
-assign [class="Rhythmbox"] $ws10
+assign [class="Spotify"] $ws10
 
 # Startup programs
-exec firefox
-exec code
-exec thunar
 exec slack
 exec discord
 exec thunderbird
-exec rhythmbox
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
