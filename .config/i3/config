@@ -251,7 +251,7 @@ bindsym Print exec xfce4-screenshooter
 bindsym Shift+Print exec xfce4-screenshooter -cr
 
 # Screen lock
-bindsym Control+Shift+l exec i3lock -i ~/Pictures/Wallpapers/rainbow.png
+bindsym Control+Shift+l exec i3lock -t -i ~/Pictures/Wallpapers/rainbow.png
 
 # Wallpaper
 exec --no-startup-id nitrogen --set-auto ~/Pictures/Wallpapers/SW.png
@@ -269,3 +269,17 @@ set $screen_standby_time 0
 set $screen_suspend_time 0
 exec xset s $screen_timeout_time
 exec xset dpms $screen_standby_time $screen_suspend_time $screen_timeout_time
+
+# Create screens layout mode
+mode "Screens Layout: (1) screen, (2) screens" {
+        bindsym $mod+1 exec ~/.screenlayout/1screen.sh ; mode "default"
+        bindsym $mod+2 exec ~/.screenlayout/2screen.sh ; mode "default"
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Shift+m mode "default"
+}
+
+bindsym $mod+Shift+m mode "Screens Layout: (1) screen, (2) screens"
+
