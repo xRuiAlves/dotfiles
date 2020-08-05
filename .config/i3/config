@@ -150,7 +150,6 @@ assign [class="discord"] $ws5
 assign [class="Skype"] $ws5
 assign [class="Thunderbird"] $ws6
 assign [class="Steam"] $ws9
-assign [class="diceydungeons"] $ws9
 assign [class="Spotify"] $ws10
 
 # Startup programs
@@ -166,7 +165,8 @@ bindsym $mod+Shift+r restart
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # Create Log out, Reboot, Poweroff bindings
-mode "Exit (L)ogout, (R)eboot, (P)oweroff" {
+set $power_mode "Exit (L)ogout, (R)eboot, (P)oweroff"
+mode $power_mode {
         bindsym $mod+r exec systemctl reboot
         bindsym $mod+l exit
         bindsym $mod+p exec systemctl poweroff
@@ -175,8 +175,7 @@ mode "Exit (L)ogout, (R)eboot, (P)oweroff" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-bindsym $mod+Shift+e mode "Exit (L)ogout, (R)eboot, (P)oweroff"
+bindsym $mod+Shift+e mode $power_mode
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -271,7 +270,8 @@ exec xset s $screen_timeout_time
 exec xset dpms $screen_standby_time $screen_suspend_time $screen_timeout_time
 
 # Create screens layout mode
-mode "Screens Layout: (1) screen, (2) screens" {
+set $screens_layout_mode "Screens Layout: (1) screen, (2) screens"
+mode $screens_layout_mode {
         bindsym $mod+1 exec ~/.screenlayout/1screen.sh ; mode "default"
         bindsym $mod+2 exec ~/.screenlayout/2screen.sh ; mode "default"
 
@@ -280,6 +280,17 @@ mode "Screens Layout: (1) screen, (2) screens" {
         bindsym Escape mode "default"
         bindsym $mod+Shift+m mode "default"
 }
+bindsym $mod+Shift+m mode $screens_layout_mode
 
-bindsym $mod+Shift+m mode "Screens Layout: (1) screen, (2) screens"
+# Create spotify mode
+set $spotify_mode "Spotify: (P)lay/pause, (N)ext song, (L)ast song"
+mode $spotify_mode {
+        bindsym $mod+p exec ~/.config/i3/scripts/spotify_play_pause.sh ; mode "default"
+        bindsym $mod+n exec ~/.config/i3/scripts/spotify_next_song.sh ; mode "default"
+        bindsym $mod+l exec ~/.config/i3/scripts/spotify_last_song.sh ; mode "default"
 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+Shift+p mode "default"
+}
+bindsym $mod+Shift+p mode $spotify_mode
