@@ -164,18 +164,20 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# Create Log out, Reboot, Poweroff bindings
-set $power_mode "Exit (L)ogout, (R)eboot, (P)oweroff"
-mode $power_mode {
-        bindsym $mod+r exec systemctl reboot
-        bindsym $mod+l exit
+# Create power management bindings
+set $power_management_mode "(P)oweroff, (R)eboot, (S)uspend, (H)ibernate, (L)ogout"
+mode $power_management_mode {
         bindsym $mod+p exec systemctl poweroff
+        bindsym $mod+r exec systemctl reboot
+        bindsym $mod+s exec systemctl suspend ; mode "default"
+        bindsym $mod+h exec systemctl hibernate ; mode "default"
+        bindsym $mod+l exit
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+Shift+e mode $power_mode
+bindsym $mod+Shift+e mode $power_management_mode
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -263,11 +265,11 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc $brightness_jump
 bindsym XF86MonBrightnessDown exec xbacklight -dec $brightness_jump
 
 # Screen timeout / suspending time configs (in seconds)
-set $screen_timeout_time 3600
-set $screen_standby_time 0
-set $screen_suspend_time 0
-exec xset s $screen_timeout_time
-exec xset dpms $screen_standby_time $screen_suspend_time $screen_timeout_time
+# set $screen_timeout_time 3600
+# set $screen_standby_time 0
+# set $screen_suspend_time 0
+# exec xset s $screen_timeout_time
+# exec xset dpms $screen_standby_time $screen_suspend_time $screen_timeout_time
 
 # Create screens layout mode
 set $screens_layout_mode "Screens Layout: (1) screen, (2) screens"
